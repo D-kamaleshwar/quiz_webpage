@@ -1,11 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <div class="container">
+        <header>
+            <h1>Interactive Quiz</h1>
+            <p class="subtitle">Test your knowledge — multiple choice quiz</p>
+        </header>
+
+        <main id="quiz">
+            <section id="question-card" class="card">
+                <div class="meta">
+                    <span id="q-index">1</span>
+                    <span class="sep">/</span>
+                    <span id="q-total">1</span>
+                </div>
+                <h2 id="question-text">Question text</h2>
+                <ul id="choices" class="choices" role="list"></ul>
+
+                <div class="controls">
+                    <button id="prev-btn" class="btn">Previous</button>
+                    <button id="next-btn" class="btn">Next</button>
+                    <button id="submit-btn" class="btn primary">Submit</button>
+                </div>
+            </section>
+
+            <section id="result" class="card hidden">
+                <h2>Results</h2>
+                <p id="score-text"></p>
+                <div id="feedback"></div>
+                <div class="controls">
+                    <button id="restart-btn" class="btn">Restart Quiz</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>Built with care • Your Quiz</footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
