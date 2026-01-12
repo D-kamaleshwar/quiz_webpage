@@ -14,6 +14,7 @@
                 <p class="subtitle">Test your knowledge — multiple choice quiz</p>
             </div>
             <div class="auth" id="auth-area">
+                <button id="settings-btn" class="btn">⚙️</button>
                 <button id="sign-in-btn" class="btn">Sign in</button>
                 <div id="user-info" class="user hidden">
                     <img id="user-avatar" src="" alt="avatar"/>
@@ -71,6 +72,24 @@
                 <input id="mock-email" type="email" placeholder="name@example.com" />
                 <button id="mock-google-btn" class="btn google">Sign in with Google</button>
                 <button id="close-login" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings modal -->
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <h3>Settings</h3>
+            <p class="muted">Choose a theme for the site.</p>
+            <div class="modal-actions">
+                <label><input type="radio" name="theme" value="default" checked /> Default (Purple)</label>
+                <label><input type="radio" name="theme" value="teal" /> Teal</label>
+                <label><input type="radio" name="theme" value="coral" /> Coral</label>
+                <label><input type="radio" name="theme" value="dark" /> Dark</label>
+                <div style="display:flex;gap:10px;margin-top:8px">
+                    <button id="apply-theme" class="btn primary">Apply</button>
+                    <button id="close-settings" class="btn">Close</button>
+                </div>
             </div>
         </div>
     </div>

@@ -148,6 +148,45 @@ document.addEventListener('DOMContentLoaded', () => {
 	updateAuthUI();
 });
 
+// --- Theme handling ---
+function applyTheme(theme) {
+	if (!theme) theme = 'default';
+	document.body.setAttribute('data-theme', theme);
+	localStorage.setItem('quiz_theme', theme);
+}
+
+function loadTheme() {
+	const saved = localStorage.getItem('quiz_theme') || 'default';
+	// set radio state if modal exists
+	const radios = document.querySelectorAll('input[name="theme"]');
+	radios.forEach(r => r.checked = (r.value === saved));
+	applyTheme(saved);
+}
+
+function showSettings() {
+	el('settings-modal').classList.remove('hidden');
+}
+
+function hideSettings() {
+	el('settings-modal').classList.add('hidden');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+	// wire settings UI
+	const settingsBtn = document.getElementById('settings-btn');
+	if (settingsBtn) settingsBtn.addEventListener('click', showSettings);
+	const closeSettings = document.getElementById('close-settings');
+	if (closeSettings) closeSettings.addEventListener('click', hideSettings);
+	const applyBtn = document.getElementById('apply-theme');
+	if (applyBtn) applyBtn.addEventListener('click', () => {
+		const sel = document.querySelector('input[name="theme"]:checked');
+		if (sel) applyTheme(sel.value);
+		hideSettings();
+	});
+
+	loadTheme();
+});
+
 // --- Mock auth functions (client-side only demo) ---
 function avatarFor(name) {
 	if (!name) return '';
