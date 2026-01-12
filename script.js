@@ -136,5 +136,60 @@ document.addEventListener('DOMContentLoaded', () => {
 	el('restart-btn').addEventListener('click', restartQuiz);
 	el('back-btn').addEventListener('click', goBackToDashboard);
 	el('back2-btn').addEventListener('click', goBackToDashboard);
+	// Auth / mock Google sign-in handlers
+	el('sign-in-btn').addEventListener('click', showLoginModal);
+	el('mock-google-btn').addEventListener('click', () => {
+		const email = el('mock-email').value.trim();
+		mockSignIn(email);
+	});
+	el('close-login').addEventListener('click', hideLoginModal);
+	el('sign-out-btn').addEventListener('click', signOut);
+
+	updateAuthUI();
 });
+
+// --- Mock auth functions (client-side only demo) ---
+function avatarFor(name) {
+	if (!name) return '';
+	const initials = name.split(' ').map(s => s[0]).join('').slice(0,2).toUpperCase();
+	const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='100%' height='100%' fill='%234f46e5'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='28' fill='white'>${initials}</text></svg>`;
+	return `data:image/svg+xml;base64,${btoa(svg)}`;
+}
+
+function updateAuthUI() {
+	const raw = localStorage.getItem('quiz_user');
+	const user = raw ? JSON.parse(raw) : null;
+	if (user) {
+		el('sign-in-btn').classList.add('hidden');
+		el('user-info').classList.remove('hidden');
+		el('user-name').textContent = user.name || user.email;
+		el('user-avatar').src = avatarFor(user.name || user.email);
+	} else {
+		el('sign-in-btn').classList.remove('hidden');
+		el('user-info').classList.add('hidden');
+	}
+}
+
+function showLoginModal() {
+	el('login-modal').classList.remove('hidden');
+	el('mock-email').focus();
+}
+
+function hideLoginModal() {
+	el('login-modal').classList.add('hidden');
+}
+
+function mockSignIn(email) {
+	if (!email) return alert('Please enter an email (mock).');
+	const name = email.split('@')[0].replace(/[._\-]/g, ' ');
+	const user = { email, name };
+	localStorage.setItem('quiz_user', JSON.stringify(user));
+	hideLoginModal();
+	updateAuthUI();
+}
+
+function signOut() {
+	localStorage.removeItem('quiz_user');
+	updateAuthUI();
+}
 

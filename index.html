@@ -9,8 +9,18 @@
 <body>
     <div class="container">
         <header>
-            <h1>Interactive Quiz</h1>
-            <p class="subtitle">Test your knowledge — multiple choice quiz</p>
+            <div class="brand">
+                <h1>Interactive Quiz</h1>
+                <p class="subtitle">Test your knowledge — multiple choice quiz</p>
+            </div>
+            <div class="auth" id="auth-area">
+                <button id="sign-in-btn" class="btn">Sign in</button>
+                <div id="user-info" class="user hidden">
+                    <img id="user-avatar" src="" alt="avatar"/>
+                    <span id="user-name"></span>
+                    <button id="sign-out-btn" class="btn">Sign out</button>
+                </div>
+            </div>
         </header>
 
         <main id="quiz">
@@ -50,6 +60,19 @@
         </main>
 
         <footer>Built with care • Your Quiz</footer>
+    </div>
+
+    <!-- Login modal (mock Google sign-in) -->
+    <div id="login-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <h3>Sign in</h3>
+            <p class="muted">Use a Google account (mock) to sign in for demo purposes.</p>
+            <div class="modal-actions">
+                <input id="mock-email" type="email" placeholder="name@example.com" />
+                <button id="mock-google-btn" class="btn google">Sign in with Google</button>
+                <button id="close-login" class="btn">Cancel</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
