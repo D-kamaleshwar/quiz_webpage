@@ -130,19 +130,20 @@ function restartQuiz() {
 
 function initApp() {
 	renderDashboard();
-	el('next-btn').addEventListener('click', goNext);
-	el('prev-btn').addEventListener('click', goPrev);
-	el('submit-btn').addEventListener('click', submitQuiz);
-	el('restart-btn').addEventListener('click', restartQuiz);
-	el('back-btn').addEventListener('click', goBackToDashboard);
-	el('back2-btn').addEventListener('click', goBackToDashboard);
+	const nextBtn = el('next-btn'); if (nextBtn) nextBtn.addEventListener('click', goNext);
+	const prevBtn = el('prev-btn'); if (prevBtn) prevBtn.addEventListener('click', goPrev);
+	const submitBtn = el('submit-btn'); if (submitBtn) submitBtn.addEventListener('click', submitQuiz);
+	const restartBtn = el('restart-btn'); if (restartBtn) restartBtn.addEventListener('click', restartQuiz);
+	const backBtn = el('back-btn'); if (backBtn) backBtn.addEventListener('click', goBackToDashboard);
+	const back2Btn = el('back2-btn'); if (back2Btn) back2Btn.addEventListener('click', goBackToDashboard);
 
 	// Auth / mock Google sign-in handlers
 	const signInBtn = el('sign-in-btn');
 	if (signInBtn) signInBtn.addEventListener('click', showLoginModal);
 	const mockBtn = el('mock-google-btn');
 	if (mockBtn) mockBtn.addEventListener('click', () => {
-		const email = el('mock-email').value.trim();
+		const emailEl = el('mock-email');
+		const email = emailEl ? emailEl.value.trim() : '';
 		mockSignIn(email);
 	});
 	const closeLogin = el('close-login');
@@ -188,11 +189,11 @@ function loadTheme() {
 }
 
 function showSettings() {
-	el('settings-modal').classList.remove('hidden');
+	const s = el('settings-modal'); if (s) s.classList.remove('hidden');
 }
 
 function hideSettings() {
-	el('settings-modal').classList.add('hidden');
+	const s = el('settings-modal'); if (s) s.classList.add('hidden');
 }
 
 
@@ -220,12 +221,12 @@ function updateAuthUI() {
 }
 
 function showLoginModal() {
-	el('login-modal').classList.remove('hidden');
-	el('mock-email').focus();
+	const l = el('login-modal'); if (l) l.classList.remove('hidden');
+	const email = el('mock-email'); if (email) email.focus();
 }
 
 function hideLoginModal() {
-	el('login-modal').classList.add('hidden');
+	const l = el('login-modal'); if (l) l.classList.add('hidden');
 }
 
 function mockSignIn(email) {
