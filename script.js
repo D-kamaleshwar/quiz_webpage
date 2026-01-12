@@ -128,7 +128,7 @@ function restartQuiz() {
 	renderQuestion();
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
 	renderDashboard();
 	el('next-btn').addEventListener('click', goNext);
 	el('prev-btn').addEventListener('click', goPrev);
@@ -136,17 +136,41 @@ document.addEventListener('DOMContentLoaded', () => {
 	el('restart-btn').addEventListener('click', restartQuiz);
 	el('back-btn').addEventListener('click', goBackToDashboard);
 	el('back2-btn').addEventListener('click', goBackToDashboard);
+
 	// Auth / mock Google sign-in handlers
-	el('sign-in-btn').addEventListener('click', showLoginModal);
-	el('mock-google-btn').addEventListener('click', () => {
+	const signInBtn = el('sign-in-btn');
+	if (signInBtn) signInBtn.addEventListener('click', showLoginModal);
+	const mockBtn = el('mock-google-btn');
+	if (mockBtn) mockBtn.addEventListener('click', () => {
 		const email = el('mock-email').value.trim();
 		mockSignIn(email);
 	});
-	el('close-login').addEventListener('click', hideLoginModal);
-	el('sign-out-btn').addEventListener('click', signOut);
+	const closeLogin = el('close-login');
+	if (closeLogin) closeLogin.addEventListener('click', hideLoginModal);
+	const signOutBtn = el('sign-out-btn');
+	if (signOutBtn) signOutBtn.addEventListener('click', signOut);
+
+	// Settings wiring (may be present)
+	const settingsBtn = el('settings-btn');
+	if (settingsBtn) settingsBtn.addEventListener('click', showSettings);
+	const closeSettings = el('close-settings');
+	if (closeSettings) closeSettings.addEventListener('click', hideSettings);
+	const applyBtn = document.getElementById('apply-theme');
+	if (applyBtn) applyBtn.addEventListener('click', () => {
+		const sel = document.querySelector('input[name="theme"]:checked');
+		if (sel) applyTheme(sel.value);
+		hideSettings();
+	});
 
 	updateAuthUI();
-});
+	loadTheme();
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', initApp);
+} else {
+	initApp();
+}
 
 // --- Theme handling ---
 function applyTheme(theme) {
