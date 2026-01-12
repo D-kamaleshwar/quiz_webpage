@@ -5,6 +5,8 @@ body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Aria
 header h1{margin:0 0 6px;font-size:30px}
 .subtitle{color:#374151;margin:6px 0 18px}
 .card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 8px 30px rgba(16,24,40,.08)}
+.muted{color:#6b7280}
+.topic-header{font-size:13px;margin-bottom:10px}
 .meta{color:#6b7280;margin-bottom:12px;font-weight:600}
 .sep{margin:0 6px;color:#9ca3af}
 .choices{list-style:none;padding:0;margin:0}
@@ -17,4 +19,15 @@ header h1{margin:0 0 6px;font-size:30px}
 .hidden{display:none}
 .feedback-correct{color:green}
 .feedback-wrong{color:#d23f31}
+
+/* Dashboard / topics */
+.topic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:12px}
+.topic-card{padding:14px;border-radius:10px;border:1px solid #e6e9ef;background:linear-gradient(180deg,#fff,#fbfbff);cursor:pointer;box-shadow:0 4px 14px rgba(79,70,229,0.06);font-weight:700}
+.topic-card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(79,70,229,0.08)}
+
+/* Small responsive tweaks */
+@media (max-width:480px){
+	.container{padding:16px}
+	header h1{font-size:22px}
+}
 

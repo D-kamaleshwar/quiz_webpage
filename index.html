@@ -14,16 +14,24 @@
         </header>
 
         <main id="quiz">
-            <section id="question-card" class="card">
+            <section id="dashboard" class="card">
+                <h2>Choose a Quiz Topic</h2>
+                <p class="muted">Tap a topic to start its quiz.</p>
+                <div id="topics" class="topic-grid"></div>
+            </section>
+
+            <section id="question-card" class="card hidden">
                 <div class="meta">
                     <span id="q-index">1</span>
                     <span class="sep">/</span>
                     <span id="q-total">1</span>
                 </div>
+                <div class="topic-header muted" id="topic-name"></div>
                 <h2 id="question-text">Question text</h2>
                 <ul id="choices" class="choices" role="list"></ul>
 
                 <div class="controls">
+                    <button id="back-btn" class="btn">Back to Topics</button>
                     <button id="prev-btn" class="btn">Previous</button>
                     <button id="next-btn" class="btn">Next</button>
                     <button id="submit-btn" class="btn primary">Submit</button>
@@ -36,6 +44,7 @@
                 <div id="feedback"></div>
                 <div class="controls">
                     <button id="restart-btn" class="btn">Restart Quiz</button>
+                    <button id="back2-btn" class="btn">Back to Topics</button>
                 </div>
             </section>
         </main>
