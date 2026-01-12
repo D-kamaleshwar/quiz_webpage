@@ -195,21 +195,7 @@ function hideSettings() {
 	el('settings-modal').classList.add('hidden');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-	// wire settings UI
-	const settingsBtn = document.getElementById('settings-btn');
-	if (settingsBtn) settingsBtn.addEventListener('click', showSettings);
-	const closeSettings = document.getElementById('close-settings');
-	if (closeSettings) closeSettings.addEventListener('click', hideSettings);
-	const applyBtn = document.getElementById('apply-theme');
-	if (applyBtn) applyBtn.addEventListener('click', () => {
-		const sel = document.querySelector('input[name="theme"]:checked');
-		if (sel) applyTheme(sel.value);
-		hideSettings();
-	});
 
-	loadTheme();
-});
 
 // --- Mock auth functions (client-side only demo) ---
 function avatarFor(name) {
